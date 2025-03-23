@@ -9,11 +9,6 @@ const PORT = 3001;
 
 app.use(cors());
 
-
-app.get('/', async (req, res) => {
-  return res.status(200).json({message:'server started.'})
-  
-})
 app.get('/start-workers', async (req, res) => {
     try {
         const logFilePath = path.join(__dirname, 'workers.log');
@@ -55,3 +50,10 @@ app.get('/logs', async (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server is running on ${PORT}`);
 });
+
+
+app.get('/', (req, res) => {
+  res.send('Hello! Server is Live.');
+});
+
+module.exports = app;
