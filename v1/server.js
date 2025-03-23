@@ -9,6 +9,11 @@ const PORT = 3001;
 
 app.use(cors());
 
+
+app.get('/', async (req, res) => {
+  return res.status(200).json({message:'server started.'})
+  
+})
 app.get('/start-workers', async (req, res) => {
     try {
         const logFilePath = path.join(__dirname, 'workers.log');
