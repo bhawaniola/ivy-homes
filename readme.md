@@ -6,7 +6,7 @@ This project extracts unique names using an autocomplete API with rotating proxi
 - **Rotating Proxies**: Uses multiple proxies to avoid rate limits.
 - **Progress Saving**: Automatically saves progress and resumes if stopped.
 - **Error Handling & Retrying**: Retries failed requests and switches proxies if needed.
-- **Efficient Parallel Processing**: Uses multiple workers for faster extraction.
+- **Efficient Parallel Processing**: Uses multiple parallel requests for faster extraction.
 
 ---
 
@@ -42,7 +42,7 @@ node workers.js
 
 ### V1
 
-- Total Names: ``
+- Total Names: `18632`
 - Total Requests: ``
 
 - ![V1 Final Result](./v1/result.png)
@@ -60,3 +60,33 @@ node workers.js
 - Total Requests: `613`
 
 - ![V3 Final Result](./v3/result.png)
+
+- Before implementing the solution, extensive inquiries were conducted to identify various endpoints and query structures that could be useful
+
+- Several issues arose while implementing the solution, including:
+
+• Handling rate limits and timeouts while making requests.
+
+• Proxy failures leading to retries and increased delay.
+
+• Managing progress tracking to ensure the script can resume from where it left off.
+
+• Data inconsistencies that required error handling & retries
+
+• Since free VMs did not work as expected, the next approach was using multiple proxies to handle requests efficiently.
+
+• The main goal was not just fetching data but also optimizing the process to make it faster and scalable.
+
+• For finding rate limit systematic approach was taken to know whether 
+
+- To find the exact rate limits when they are not documented:
+
+Start with a Controlled Request Rate
+Begin with 1 request per second and gradually increase the rate.
+and in this way we get the rate limit of the api and for the different versioning we get rate limit as:
+v1: 100 requests per minute
+v2: 50 requests per minute
+v3: 30 requests per minute
+these all rate limits are for one ip per minute basis
+Heres the link for initial findings :https://drive.google.com/drive/folders/1FBrYa1tsXHgzaBfwWV1kqZFDn35I_v1q?usp=drive_link
+these were done in python initially than switched to js
