@@ -6,7 +6,7 @@ const { fetchProxies, filterWorkingProxies } = require("./handleProxy");
 const BASE_URL = "http://35.200.185.69:8000/v2/autocomplete";
 const MAX_RESULTS = 12;
 const RATE_LIMIT_DELAY = 1300;
-const RETRY_DELAY = 15000;
+const RETRY_DELAY = 5000;
 const PROGRESS_FILE = "progress.json";
 const SAVE_INTERVAL = 60 * 1000; 
 
@@ -72,7 +72,6 @@ function getNextProxy() {
   return proxy;
 }
 
-// Fetch names for a given prefix
 async function fetchNames(prefix, proxy, groupChar) {
   if (visitedPrefixes.has(prefix) || (lastProcessedPrefixes[groupChar] && prefix < lastProcessedPrefixes[groupChar])) {
     return; 
